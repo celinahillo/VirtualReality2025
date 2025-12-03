@@ -24,17 +24,16 @@ function loop(){
      above two tasks.
   */
 
- for(let block of blocks){
-    if(dart && distance(block.obj,dart.obj) < 1){
-      block.obj.setAttribute("opacity",0);
-    }
+  for(let block of blocks){
+      if(dart && distance(block.obj, dart.obj) < 1){
+          block.shot = true;   
+      }
+      block.shrink();           
   }
 
   if(dart){
-    dart.fly();
+      dart.fly();               
   }
-   
-  b.shrink();
 
   window.requestAnimationFrame(loop);
 }
