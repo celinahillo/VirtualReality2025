@@ -20,25 +20,25 @@ window.addEventListener("DOMContentLoaded",function() {
   */
  window.addEventListener("keypress",function(e){
     console.log(e.key)
-    let gem = gem.object3D.rotation;  
+    let gems = gem.object3D.rotation;  
 
   if(e.key == "1"){     
-    gem.z += 0.1;
+    gems.z += 0.1;
   }
   else if(e.key == "2"){ 
-    gem.z -= 0.1;
+    gems.z -= 0.1;
   }
   else if(e.key == "3"){ 
-    gem.x += 0.1;
+    gems.x += 0.1;
   }
   else if(e.key == "4"){ 
-    gem.x -= 0.1;
+    gems.x -= 0.1;
   }
   else if(e.key == "5"){ 
-    gem.y += 0.1;
+    gems.y += 0.1;
   }
   else if(e.key == "6"){ 
-    gem.y -= 0.1;
+    gems.y -= 0.1;
   }
 });
   
