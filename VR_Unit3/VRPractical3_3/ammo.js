@@ -11,7 +11,7 @@ class AmmoBox {
 
     
     this.obj.addEventListener("click", () => {
-      ammo_count += 5;
+      ammo_count += 10;
       this.obj.setAttribute("visible", false); 
     });
 

@@ -1,8 +1,13 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, pig = [], camera, bullet, enemies = [], ammo_boxes = [], ammo_count = 5, enemy_killed = 0;
-let time_text, time_left = 30;
+let scene, pig = [], camera, bullet, enemies = [], ammo_boxes = [], ammo_count = 10, enemy_killed = 0;
+let time_text, time_left = 50;
 let score_text, score = 0;
-let ammo_text, ammo = 5;
+let ammo_text, ammo = 10;
+let total_pigs = 0;
+let gameOver = false;
+let youwinElem = null;
+let youloseElem = null;
+let angrybirdElem = null;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -10,11 +15,12 @@ window.addEventListener("DOMContentLoaded",function() {
   time_text = document.getElementById("time");
   score_text = document.getElementById("score");
   ammo_text = document.getElementById("ammo");
-  
+
   score_text.setAttribute("value", "Score: " + score);
   ammo_text.setAttribute("value", "Ammo: " + ammo_count);
 
    window.onclick = ()=>{
+    if (gameOver) return;
     if(ammo_count > 0){
       bullet = new Bullet();
       ammo_count--;
@@ -29,6 +35,11 @@ window.addEventListener("DOMContentLoaded",function() {
 
     pig.push(new Pig(x,y,z));
   }
+  
+  total_pigs = pig.length;
+  youwinElem = document.getElementById('win');
+  youloseElem = document.getElementById('lose');
+  angrybirdElem = document.getElementById('angrybird');
 
   for (let i = 0; i < 4; i++) {
     let x = rnd(-10, 10);
@@ -38,7 +49,7 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
   window.addEventListener("keydown",function(e){
-    //User can only fire with they press the spacebar and have sufficient ammo
+    if (gameOver) return;
     if(e.key == " " && ammo_count > 0  ){
       bullet = new Bullet();
       ammo_count--;
@@ -56,12 +67,23 @@ function updateTimer(){
 
   if (time_left >= 0) {
     setTimeout(updateTimer, 1000);
+  } else {
+    if (!gameOver) {
+      if (angrybirdElem) angrybirdElem.setAttribute('visible', false);   
+      if (enemy_killed >= total_pigs) {
+        if (youwinElem) youwinElem.setAttribute('visible', true);
+      } else {
+        if (youloseElem) youloseElem.setAttribute('visible', true);
+      }
+      gameOver = true;
+    }
   }
 }
 
 function loop() {
 
-  
+  if (gameOver) return;
+
   for (let p of pig) {
     p.move();
   }
@@ -86,6 +108,12 @@ function loop() {
         bullet.obj.setAttribute("visible", false);
         bullet = null;
         hit = true;
+
+        if (enemy_killed >= total_pigs) {
+          if (angrybirdElem) angrybirdElem.setAttribute('visible', false);
+          if (youwinElem) youwinElem.setAttribute('visible', true);
+          gameOver = true;
+        }
       }
     }
   }
