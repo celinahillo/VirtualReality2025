@@ -9,6 +9,9 @@ class UFO{
     this.obj = document.createElement("a-gltf-model");
 
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
+    this.obj.setAttribute("scale",{x:1,y:1,z:1});
+    this.obj.setAttribute("animation-mixer","");
+    this.obj.setAttribute("src","#ufo");
     scene.append(this.obj);
  
   }

@@ -10,18 +10,15 @@
   <body>
     <a-scene>
       <a-assets>
-        <a-asset-item id="ufoModel" src="ufo.glb"></a-asset-item>
-        <a-asset-item id="robotModel" src="robot.glb"></a-asset-item>
+        <a-asset-item id="ufo" src="ufo/scene.gltf" ></a-asset-item>
+        <a-asset-item id="robot" src="floating_robot/scene.gltf" ></a-asset-item>
       </a-assets>
-
-      <a-gltf-model src="#ufoModel"></a-gltf-model>
-      <a-gltf-model src="#robotModel" position="2 0 -3" scale="0.5 0.5 0.5"></a-gltf-model>
 
       <a-sky color="cyan"></a-sky>
       <a-plane color="gray" rotation="-90 0 0" width="50" height="50"></a-plane>
       <a-camera>
         <a-cursor></a-cursor>  
-      
+        </a-cursor>
       </a-camera>
     </a-scene>
   </body>
