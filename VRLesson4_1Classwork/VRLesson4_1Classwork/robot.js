@@ -6,12 +6,12 @@ class Robot{
     this.obj = document.createElement("a-gltf-model");
 
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
-    this.obj.addEventListener("click",()=>{
-    this.float = true;
-
+   
     this.obj.setAttribute("scale",{x:0.1,y:0.1,z:0.1});
     this.obj.setAttribute("animation-mixer","");
-    this.obj.setAttribute("src","#robot"); 
+    this.obj.setAttribute("src","#robot");  
+    this.obj.addEventListener("click",()=>{
+    this.float = true;
     })
     scene.append(this.obj);
   }
