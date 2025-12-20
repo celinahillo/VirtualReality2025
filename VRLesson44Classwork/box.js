@@ -13,7 +13,7 @@ class Box{
       Add an event listener that sets boom to true and
       plays the fireball sound effect
    */
-    this.obj.addEventListener("click", e=>{ 
+    this.obj.addEventListener("click", ()=>{ 
       this.boom = true;
       this.obj.components.sound.playSound();
     });
